@@ -1,0 +1,24 @@
+
+<div class="all consuming">
+  <button mat-raised-button (click)="addItem()">Add New Budget Item</button>
+  
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="itemdescription">
+      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.ItemDescription}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="itemcost">
+      <mat-header-cell *matHeaderCellDef> Cost </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.ItemCost}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="itempaid">
+      <mat-header-cell *matHeaderCellDef> Paid </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.ItemPaid}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
