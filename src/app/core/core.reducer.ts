@@ -1,4 +1,5 @@
-import { BudgetReducer, BudgetState } from '@wa/BudgetScreen';
+
+import { BudgetState, BudgetReducer } from '@wa/BudgetScreen/budgetscreen.reducer';
 
 export interface AppState {
   budgetItems: BudgetState;

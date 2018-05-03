@@ -1,18 +1,18 @@
 <h1 mat-dialog-title>Add new Budget Item</h1>
 <div mat-dialog-content>
-  <form [formGroup]="itemForm" novalidate (ngSubmit)="onSubmit()">
+  <form [formGroup]="itemForm" novalidate>
     <mat-form-field>
-      <input matInput placeholder="Description" formControlName="itemDescription">
+      <input matInput placeholder="Description" formControlName="ItemDescription">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Cost" formControlName="itemCost">
+      <input matInput placeholder="Cost" formControlName="ItemCost">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Paid" formControlName="itemPaid">
+      <input matInput placeholder="Paid" formControlName="ItemPaid">
     </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="onSubmit()" cdkFocusInitial>Add Item</button>
+  <button mat-button (click)="onSubmit()">Add Item</button>
 </div>

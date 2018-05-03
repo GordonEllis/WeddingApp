@@ -15,6 +15,8 @@ const initialState: BudgetState = {
 
 export function BudgetReducer(state = initialState, action: BudgetActions.ItemAction): BudgetState {
   switch (action.type) {
+    
+
     case BudgetActions.GetItemsSuccess.TYPE: {
         return {
           ...state,
@@ -22,6 +24,7 @@ export function BudgetReducer(state = initialState, action: BudgetActions.ItemAc
         };
       }
     case BudgetActions.AddItemSuccess.TYPE: {
+      console.log(action.item);
       return {
         ...state,
         hasError: false,

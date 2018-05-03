@@ -20,16 +20,14 @@ export class BudgetScreenComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
               private store: Store<AppState>) {
-    this.store.dispatch(new GetItems());
+    this.store.select(s => s.budgetItems).subscribe(items =>{
+      console.log(items.data);
+      this.dataSource = new MatTableDataSource<BudgetItem>(items.data);
+    })
   }
 
   ngOnInit(){
-    this.store.select(s => s.budgetItems).subscribe(items =>{
-      this.dataSource = new MatTableDataSource<BudgetItem>([{ ItemId: 1, ItemDescription: "Venue", ItemCost: 1, ItemPaid: 1 },
-      { ItemId: 2, ItemDescription: "Dress", ItemCost: 1, ItemPaid: 1 },
-      { ItemId: 3, ItemDescription: "Kilt", ItemCost: 1, ItemPaid: 1 },
-      { ItemId: 4, ItemDescription: "Booze", ItemCost: 1, ItemPaid: 1 }]);
-    })
+    this.store.dispatch(new GetItems());
   }
 
   addItem() {

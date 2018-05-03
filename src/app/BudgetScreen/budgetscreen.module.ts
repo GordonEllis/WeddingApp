@@ -6,7 +6,11 @@ import {
   BudgetScreenComponent,
   DialogComponent,
 } from './components';
+import { BudgetItemEffects } from './budgetscreen.effects';
 import { SharedModule } from '@wa/shared';
+import { EffectsModule } from '@ngrx/effects';
+import { BudgetReducer } from './budgetscreen.reducer';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -14,11 +18,12 @@ import { SharedModule } from '@wa/shared';
     DialogComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    BrowserAnimationsModule
+    StoreModule.forRoot(BudgetReducer)
   ],
   exports: [
     BudgetScreenComponent,

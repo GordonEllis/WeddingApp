@@ -17,7 +17,7 @@ export class AddItemSuccess implements Action {
 export class GetItems implements Action {
   public static readonly TYPE = '[BudgetScreen] Get Items';
   readonly type = GetItems.TYPE;
-  constructor(public itemIds?: string[]) { console.log("getmeitems")}
+  constructor(public itemIds?: string[]) { }
 }
 
 export class GetItemsSuccess implements Action {

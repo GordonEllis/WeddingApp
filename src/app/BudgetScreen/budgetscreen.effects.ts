@@ -17,10 +17,9 @@ export class BudgetItemEffects {
 
   @Effect() getItems$ = this.action$.pipe(
     ofType(BudgetItemActions.GetItems.TYPE),
-    mergeMap(() =>
-      this.service.getItems().pipe(
-        map(items => {console.log(items);
-          new BudgetItemActions.GetItemsSuccess(items)})
+    mergeMap((action: BudgetItemActions.GetItems) =>
+      this.service.getItems(action.itemIds).pipe(
+        map(items => new BudgetItemActions.GetItemsSuccess(items))
       )
     )
   );

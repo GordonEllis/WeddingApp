@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { AppState } from '@wa/core';
 import { AddItem } from '@wa/BudgetScreen/budgetscreen.actions';
+import { BudgetItem } from '@wa/BudgetScreen/models';
 
 @Component({
   selector: 'dialogComponent',
@@ -18,13 +19,20 @@ export class DialogComponent {
               private formBuilder: FormBuilder,
               private store: Store<AppState> ){
     this.itemForm = this.formBuilder.group({
-      itemDescription: ['', Validators.required],
-      itemCost: [0, Validators.required],
-      itemPaid: [0, Validators.required]
+      ItemDescription: ['', Validators.required],
+      ItemCost: [0, Validators.required],
+      ItemPaid: [0, Validators.required]
     })
   }
 
   onSubmit() {
-    this.store.dispatch(new AddItem(this.itemForm.value));
+    var newItem: BudgetItem = this.itemForm.value;
+    newItem.ItemId = 5;
+    this.store.dispatch(new AddItem(newItem));
+    this.onNoClick();
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }
