@@ -14,7 +14,7 @@ export class BudgetItemService {
   var items: BudgetItem[] = [{ ItemId: 1, ItemDescription: "Venue", ItemCost: 1, ItemPaid: 1 },
                             { ItemId: 2, ItemDescription: "Dress", ItemCost: 1, ItemPaid: 1 },
                             { ItemId: 3, ItemDescription: "Kilt", ItemCost: 1, ItemPaid: 1 },
-                            { ItemId: 4, ItemDescription: "Booze", ItemCost: 1, ItemPaid: 1 }];
+                            { ItemId: 4, ItemDescription: "Booze", ItemCost: 1, ItemPaid: 3 }];
                             
     return Observable.of(items);
   }

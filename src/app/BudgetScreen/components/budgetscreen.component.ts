@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-
-import { MatTableDataSource } from '@angular/material';
-import { MatTableModule, MatDialog } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatSort } from '@angular/material';
 import { DialogComponent } from './dialog';
 import { Store } from '@ngrx/store';
 import { AppState } from '@wa/core';
@@ -16,13 +15,15 @@ import { GetItems } from '@wa/BudgetScreen/budgetscreen.actions';
 
 export class BudgetScreenComponent implements OnInit {
   dataSource:  MatTableDataSource<BudgetItem>;
-  displayedColumns: string[] = ['itemdescription', 'itemcost', 'itempaid'];
+  displayedColumns: string[] = ['itemdescription', 'itemcost', 'itempaid', 'outstanding'];
+  
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog,
               private store: Store<AppState>) {
     this.store.select(s => s.budgetItems).subscribe(items =>{
-      console.log(items.data);
       this.dataSource = new MatTableDataSource<BudgetItem>(items.data);
+      this.dataSource.filterPredicate = (data: BudgetItem, filter: string) => data.ItemDescription.indexOf(filter) != -1;
     })
   }
 
@@ -33,4 +34,12 @@ export class BudgetScreenComponent implements OnInit {
   addItem() {
     this.dialog.open(DialogComponent);
   }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
 }
+
+
