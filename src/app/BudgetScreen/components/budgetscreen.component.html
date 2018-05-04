@@ -14,12 +14,12 @@
     </ng-container>
 
     <ng-container matColumnDef="itemcost">
-      <mat-header-cell *matHeaderCellDef> Cost </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Cost </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.ItemCost}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="itempaid">
-      <mat-header-cell *matHeaderCellDef> Paid </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Paid </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.ItemPaid}} </mat-cell>
     </ng-container>
 

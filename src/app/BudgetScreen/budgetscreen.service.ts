@@ -4,22 +4,22 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
-import { BudgetItem, ItemCategory } from './models';
+import { BudgetItem } from './models';
 
 @Injectable()
 export class BudgetItemService {
   public constructor(private http: HttpClient) { }
 
   getItems(ids?: string[]): Observable<BudgetItem[]> {
-  var items: BudgetItem[] = [{ ItemId: 1, ItemDescription: "Venue", ItemCategory: ItemCategory.Venues, ItemCost: 1, ItemPaid: 1 },
-                            { ItemId: 2, ItemDescription: "Dress", ItemCategory: ItemCategory.BrideAndGroom, ItemCost: 1, ItemPaid: 1 },
-                            { ItemId: 3, ItemDescription: "Kilt", ItemCategory: ItemCategory.BrideAndGroom, ItemCost: 1, ItemPaid: 1 },
-                            { ItemId: 4, ItemDescription: "Booze", ItemCategory: ItemCategory.Entertainment, ItemCost: 1, ItemPaid: 3 }];
+  var items: BudgetItem[] = [{ ItemId: 1, ItemDescription: "Venue", ItemCost: 1, ItemPaid: 1 },
+                            { ItemId: 2, ItemDescription: "Dress", ItemCost: 1, ItemPaid: 1 },
+                            { ItemId: 3, ItemDescription: "Kilt", ItemCost: 1, ItemPaid: 1 },
+                            { ItemId: 4, ItemDescription: "Booze", ItemCost: 1, ItemPaid: 3 }];
                             
     return Observable.of(items);
   }
 
-  addItem(item: BudgetItem): Observable<BudgetItem> {
-    return Observable.of(item);  
+  addItem(item: BudgetItem): Observable<any> {
+    return Observable.of(item);
   }
 }
