@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { } from '@angular/material';
 import { MatTableDataSource, MatDialog, MatSort } from '@angular/material';
-import { DialogComponent } from './dialog';
 import { Store } from '@ngrx/store';
-import { AppState } from '@wa/core';
 import { BudgetItem } from '@wa/BudgetScreen/Models';
 import { GetItems } from '@wa/BudgetScreen/budgetscreen.actions';
+import { AppState } from '@wa/core';
 
+import { DialogComponent } from './dialog';
 
 @Component({
   selector: 'budgetscreen',
@@ -21,10 +20,14 @@ export class BudgetScreenComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
               private store: Store<AppState>) {
-    this.store.select(s => s.budgetItems).subscribe(items =>{
+      this.store.select(s => s.budgetItems).subscribe(items =>{
       this.dataSource = new MatTableDataSource<BudgetItem>(items.data);
-      this.dataSource.filterPredicate = (data: BudgetItem, filter: string) => data.ItemDescription.indexOf(filter) != -1;
+      this.dataSource.filterPredicate = (data: BudgetItem, filter: string) => data.ItemDescription.toLowerCase().indexOf(filter) != -1;
     })
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   ngOnInit(){
@@ -36,8 +39,8 @@ export class BudgetScreenComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
 }
