@@ -3,4 +3,5 @@ export interface BudgetItem {
     ItemDescription: string,
     ItemCost: number,
     ItemPaid: number,
+    ItemOutstanding: number,
 }

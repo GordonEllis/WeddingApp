@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { } from '@angular/material';
 import { MatTableDataSource, MatDialog, MatSort } from '@angular/material';
 import { DialogComponent } from './dialog';
 import { Store } from '@ngrx/store';
@@ -15,7 +14,7 @@ import { GetItems } from '@wa/BudgetScreen/budgetscreen.actions';
 
 export class BudgetScreenComponent implements OnInit {
   dataSource:  MatTableDataSource<BudgetItem>;
-  displayedColumns: string[] = ['itemdescription', 'itemcost', 'itempaid', 'outstanding'];
+  displayedColumns: string[] = ['ItemDescription', 'ItemCost', 'ItemPaid', 'ItemOutstanding'];
   
   @ViewChild(MatSort) sort: MatSort;
 
@@ -25,6 +24,10 @@ export class BudgetScreenComponent implements OnInit {
       this.dataSource = new MatTableDataSource<BudgetItem>(items.data);
       this.dataSource.filterPredicate = (data: BudgetItem, filter: string) => data.ItemDescription.indexOf(filter) != -1;
     })
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   ngOnInit(){

@@ -8,24 +8,24 @@
   <button mat-raised-button (click)="addItem()">Add New Budget Item</button>
   
   <mat-table #table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="itemdescription">
+    <ng-container matColumnDef="ItemDescription">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.ItemDescription}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="itemcost">
+    <ng-container matColumnDef="ItemCost">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Cost </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.ItemCost}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="itempaid">
+    <ng-container matColumnDef="ItemPaid">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Paid </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.ItemPaid}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="outstanding">
+    <ng-container matColumnDef="ItemOutstanding">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Outstanding </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.ItemCost - element.ItemPaid}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.ItemOutstanding}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
